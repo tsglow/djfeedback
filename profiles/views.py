@@ -9,8 +9,8 @@ from .models import UserProfile
 
 # Create your views here.
 
-class CreateProfileView(CreateView):
-    template_name = "profiles/create_profile.html"
+class CreateProfileView(CreateView):    
+    template_name = "profiles/create_profile.html"    
     model = UserProfile
     fields = "__all__"
     success_url = "/profiles"

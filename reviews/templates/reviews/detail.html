@@ -1,8 +1,17 @@
 {% extends 'reviews/base.html' %}
 {% block title %} review detail {% endblock  %}
 {% block content %}
-    <p>Writter: {{review.user_name}}</p>
-    <p>Review: {{review.review_text}}</p>
-    <p>Rating: {{review.rating}}</p>
-    <a href="{% url 'list' %}">back to list</a>
+    <p>Writter: {{ review.user_name}}</p>
+    <p>Review: {{ review.review_text}}</p>
+    <p>Rating: {{ review.rating}}</p>
+    {% if is_favorite %}    
+        <p>this review is your favorite</p>
+    {% else %}        
+        <form action="/list/favorite" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="review_id" value="{{ review.id }}">
+        <button>Favorite</button>
+    </form>    
+    {% endif %}
+    <a href="{% url 'list' %}">back to list</a>    
 {% endblock  %}
